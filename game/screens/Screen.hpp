@@ -1,18 +1,18 @@
 #ifndef _GAME_SCREENS_SCREEN_H_
 #define _GAME_SCREENS_SCREEN_H_
 #include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
 class Game;
 class Screen
 {
 public:
     Screen(Game& game);
-    ~Screen();
+    virtual ~Screen();
     
-    virtual void draw(sf::RenderWindow& window, const sf::Time& delta) = 0;
+    virtual void draw(sf::RenderWindow& window) = 0;
     virtual void update(sf::RenderWindow& window, const sf::Time& delta) = 0;
     virtual void inputs(sf::RenderWindow& window, const sf::Time& delta) = 0;
     virtual void textInput(char c) = 0;
+    
     virtual void screenEnter();
     virtual void screenExit();
     

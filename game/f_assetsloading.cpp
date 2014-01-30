@@ -4,6 +4,10 @@
 #endif
 void Game::loadAssets()
 {
+    /**
+     * This is used for osx XCode to find the resource location.
+     * When compiling with XCode, define APPBUNDLE as a preprocessor macro.
+     */
     std::string path = "";
     #ifdef APPBUNDLE
     path = resourcePath();
