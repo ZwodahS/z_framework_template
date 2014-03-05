@@ -14,34 +14,24 @@ WARNING= -Wextra -Wno-switch -Wno-sign-compare -Wno-missing-braces -Wno-unused-p
 OPTIMIZE= -fno-exceptions
 BIN=binaryname
 BINFDR=bin/
-CXX=clang++ #${WARNING}
+CXX=clang++ ${WARNING} -std=c++11
 SFML=-framework sfml-graphics -framework sfml-window -framework sfml-system -framework sfml-network
 OBJDIR=obj
 
-#zf framework 
-zf_common = $(shell cd z_framework/zf_common ; ls *.cpp)
-zf_commonobjs = $(patsubst %, $(OBJDIR)/%, $(zf_common:.cpp=.o))
-
-zf_sfml = $(shell cd z_framework/zf_sfml ; ls *.cpp)
-zf_sfmlobjs = $(patsubst %, $(OBJDIR)/%, $(zf_sfml:.cpp=.o))
-
-zf_sfmlsub = $(shell cd z_framework/zf_sfml ; for F in `ls -d */`; do cd $$F ; ls *.cpp ; cd .. ; done)
-zf_sfmlsubobjs = $(patsubst %, $(OBJDIR)/%, $(zf_sfmlsub:.cpp=.o))
-# game code
-game = $(shell cd game; ls *.cpp ; for F in `ls -d */` ; do cd $$F; ls *.cpp ;cd ..; done)
+game = $(shell cat FileList)
 gameobjs = $(patsubst %,$(OBJDIR)/%,$(game:.cpp=.o))
 
 main=obj/main.o
 
 all: $(BIN)
 
-$(BIN) : $(main) $(zf_commonobjs) $(zf_sfmlobjs) $(zf_sfmlsubobjs) $(zf_platformerobjs) $(zf_networkobjs) $(zf_networksubobjs) $(gameobjs)
+$(BIN) : $(main) $(zf_commonobjs) $(zf_sfmlobjs) $(zf_sfmlsubobjs) $(zf_platformerobjs) $(zf_networkobjs) $(zf_networksubobjs) $(gameobjs) FileList
 	$(CXX) -o $(BIN) $(OBJDIR)/* $(SFML)
 
 $(OBJDIR)/%.o : %.cpp
 	$(CXX) -c -o $@ $^
 
-obj/main.o : main.cpp 
+obj/main.o : main.cpp
 	$(CXX) -c -o $@ $^
 
 clean:
