@@ -1,5 +1,7 @@
 # framework common files, always required
 vpath %.cpp z_framework/zf_common/
+# framework inputs
+vpath %.cpp z_framework/zf_inputs/
 # framework sfml code. also required.
 vpath %.cpp z_framework/zf_sfml/
 # framework sfml animation code.
