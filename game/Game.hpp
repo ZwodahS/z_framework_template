@@ -2,7 +2,7 @@
 #define _GAME_GAME_H_
 
 #include "Assets.hpp"
-#include "../z_framework/zf_sfml/Mouse.hpp"
+#include "../z_framework/zf_inputs/Mouse.hpp"
 #include <SFML/Graphics.hpp>
 
 #include <string>
