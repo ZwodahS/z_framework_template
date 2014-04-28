@@ -6,6 +6,8 @@ vpath %.cpp z_framework/zf_inputs/
 vpath %.cpp z_framework/zf_sfml/
 # framework sfml animation code.
 vpath %.cpp z_framework/zf_sfml/animations
+# framework for hud
+vpath %.cpp z_framework/zf_hud/
 # game code.
 vpath %.cpp game/
 # game screen code
